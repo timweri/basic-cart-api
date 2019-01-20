@@ -604,3 +604,238 @@ ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=Shirt 1):
   
 app/graphql/types/query_type.rb:17:in `block (3 levels) in <main>'
 app/controllers/application_controller.rb:3:in `query'
+Started POST "/query" for ::1 at 2019-01-20 13:49:42 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE (title = 'Shirt 1') ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:19
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE (title = 'Shirt 1') ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:19
+Completed 200 OK in 74ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 13:52:14 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"mutation"=>"{ purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"mutation"=>"{ purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 13:55:40 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"mutation"=>"{ purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"mutation"=>"{ purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+Completed 200 OK in 73ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 13:59:32 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"mutation"=>"{ purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"mutation"=>"{ purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+Completed 200 OK in 42ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:00:10 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+Completed 404 Not Found in 27ms (ActiveRecord: 0.6ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Product without an ID):
+  
+app/graphql/resolvers/purchase_product.rb:7:in `call'
+app/controllers/application_controller.rb:3:in `query'
+Started POST "/query" for ::1 at 2019-01-20 14:00:52 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 0.9ms)
+
+
+  
+NoMethodError (undefined method `update_all' for #<Array:0x00007f14e400ed30>):
+  
+app/graphql/resolvers/purchase_product.rb:13:in `call'
+app/controllers/application_controller.rb:3:in `query'
+Started POST "/query" for ::1 at 2019-01-20 14:02:34 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[36mProduct Update (4.4ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 101], ["updated_at", "2019-01-20 19:02:34.906042"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+Completed 200 OK in 91ms (Views: 0.2ms | ActiveRecord: 14.8ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:02:45 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (3.7ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[36mProduct Update (4.2ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 100], ["updated_at", "2019-01-20 19:02:45.407705"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+Completed 200 OK in 82ms (Views: 0.2ms | ActiveRecord: 13.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:02:47 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[36mProduct Update (2.6ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 99], ["updated_at", "2019-01-20 19:02:47.250143"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+Completed 200 OK in 19ms (Views: 0.2ms | ActiveRecord: 7.6ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:02:48 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[36mProduct Update (2.0ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 98], ["updated_at", "2019-01-20 19:02:48.877328"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[35m (8.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 10.6ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:02:54 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [2]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[36mProduct Update (4.2ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", -1], ["updated_at", "2019-01-20 19:02:54.628959"], ["id", 2]]
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:02:57 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [2]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[36mProduct Update (2.4ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", -2], ["updated_at", "2019-01-20 19:02:57.184295"], ["id", 2]]
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+  [1m[35m (6.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_product.rb:15
+Completed 200 OK in 26ms (Views: 0.3ms | ActiveRecord: 9.6ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:03:29 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProduct(ids: [2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProduct(ids: [2]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_product.rb:7
+Completed 200 OK in 69ms (Views: 0.3ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:05:02 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(id: 99) { id, title, price, inventory_count }, Product2: product(id: 97) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(id: 99) { id, title, price, inventory_count }, Product2: product(id: 97) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 99], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:17
+Completed 404 Not Found in 10ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=99):
+  
+app/graphql/types/query_type.rb:17:in `block (3 levels) in <main>'
+app/controllers/application_controller.rb:3:in `query'
+Started POST "/query" for ::1 at 2019-01-20 14:06:20 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [2]) { id, title, price, inventory_count } }"}}
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (uninitialized constant Resolvers::PurchaseProducts):
+  
+app/graphql/types/mutation_type.rb:5:in `block in <main>'
+app/graphql/schema.rb:1:in `<main>'
+app/controllers/application_controller.rb:3:in `query'
+Started POST "/query" for ::1 at 2019-01-20 14:06:33 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [2]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:7
+Completed 200 OK in 64ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:06:46 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [1, 2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [1, 2]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/graphql/resolvers/purchase_products.rb:7
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:07:19 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+  [1m[36mProduct Update (4.2ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 97], ["updated_at", "2019-01-20 19:07:19.483113"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+  [1m[35m (21.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+Completed 200 OK in 36ms (Views: 0.2ms | ActiveRecord: 25.5ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:07:21 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (2.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+  [1m[36mProduct Update (2.0ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 96], ["updated_at", "2019-01-20 19:07:21.080837"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:07:24 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [1, 2]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [1, 2]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE "products"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/graphql/resolvers/purchase_products.rb:7
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 14:07:26 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"mutation { purchaseProducts(ids: [1]) { id, title, price, inventory_count } }", "application"=>{"query"=>"mutation { purchaseProducts(ids: [1]) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:7
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+  [1m[36mProduct Update (5.5ms)[0m  [1m[33mUPDATE "products" SET "inventory_count" = ?, "updated_at" = ? WHERE "products"."id" = ?[0m  [["inventory_count", 95], ["updated_at", "2019-01-20 19:07:26.786810"], ["id", 1]]
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/graphql/resolvers/purchase_products.rb:15
+Completed 200 OK in 22ms (Views: 0.2ms | ActiveRecord: 10.7ms)
+
+
