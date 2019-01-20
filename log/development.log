@@ -416,3 +416,191 @@ Processing by ApplicationController#query as */*
 Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 0.4ms)
 
 
+Started POST "/query" for ::1 at 2019-01-20 12:08:17 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (inventory_count > 0)[0m
+  ↳ app/controllers/application_controller.rb:3
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:19:03 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (inventory_count > 0)[0m
+  ↳ app/controllers/application_controller.rb:3
+Completed 200 OK in 76ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:20:27 -0500
+Processing by ApplicationController#query as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:20:43 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (inventory_count > 0)[0m
+  ↳ app/controllers/application_controller.rb:3
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:22:07 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ allProducts { id, title, price, inventory_count } }", "application"=>{"query"=>"{ allProducts { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  ↳ app/controllers/application_controller.rb:3
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:23:08 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product }", "application"=>{"query"=>"{ product }"}}
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:23:14 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product }", "application"=>{"query"=>"{ product }"}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:23:35 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product }", "application"=>{"query"=>"{ product }"}}
+Completed 200 OK in 2ms (Views: 0.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:23:44 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ allProducts(onlyShowAvailable: true) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE (inventory_count > 0)[0m
+  ↳ app/controllers/application_controller.rb:3
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:24:14 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:21
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `each' for #<Product:0x000055c0a1e0b750>):
+  
+app/controllers/application_controller.rb:3:in `query'
+Started POST "/query" for ::1 at 2019-01-20 12:25:51 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:21
+Completed 200 OK in 66ms (Views: 0.2ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:25:57 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:21
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:26:12 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product(id: 2) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product(id: 2) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:17
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:26:17 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product(id: 3) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product(id: 3) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:17
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:26:52 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:21
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:27:45 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ product(id: 1) { id, title, price, inventory_count }, product(id: 2) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ product(id: 1) { id, title, price, inventory_count }, product(id: 2) { id, title, price, inventory_count } }"}}
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:28:08 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(id: 1) { id, title, price, inventory_count }, Product2: product(id: 2) { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(id: 1) { id, title, price, inventory_count }, Product2: product(id: 2) { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:17
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:17
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:28:59 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(name: 'Shirt 1') { id, title, price, inventory_count }, Product2: product(id: 'Shirt 2') { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(name: 'Shirt 1') { id, title, price, inventory_count }, Product2: product(id: 'Shirt 2') { id, title, price, inventory_count } }"}}
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:29:09 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(name: 'Shirt 1') { id, title, price, inventory_count }, Product2: product(id: 'Shirt 1') { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(name: 'Shirt 1') { id, title, price, inventory_count }, Product2: product(id: 'Shirt 1') { id, title, price, inventory_count } }"}}
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:32:26 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(name: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(name: \"Shirt 1\") { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(name: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(name: \"Shirt 1\") { id, title, price, inventory_count } }"}}
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:32:53 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE (title = 'Shirt 1') ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:19
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE (title = 'Shirt 1') ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:19
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:34:12 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product3: product(id: \"Shirt 1\") { id, title, price, inventory_count }, Product4: product(id: 2) { id, title, price, inventory_count }, Product5: product(name: \"Shirt 1\") { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product3: product(id: \"Shirt 1\") { id, title, price, inventory_count }, Product4: product(id: 2) { id, title, price, inventory_count }, Product5: product(name: \"Shirt 1\") { id, title, price, inventory_count } }"}}
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:34:33 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product3: product(id: \"Shirt 1\") { id, title, price, inventory_count }, Product4: product(id: 2) { id, title, price, inventory_count }, Product5: product(name: \"Shirt 1\") { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product3: product(id: \"Shirt 1\") { id, title, price, inventory_count }, Product4: product(id: 2) { id, title, price, inventory_count }, Product5: product(name: \"Shirt 1\") { id, title, price, inventory_count } }"}}
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/query" for ::1 at 2019-01-20 12:34:45 -0500
+Processing by ApplicationController#query as */*
+  Parameters: {"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product3: product(id: \"Shirt 1\") { id, title, price, inventory_count }, Product4: product(id: 2) { id, title, price, inventory_count }, Product5: product(title: \"Shirt 1\") { id, title, price, inventory_count } }", "application"=>{"query"=>"{ Product1: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product2: product(title: \"Shirt 1\") { id, title, price, inventory_count }, Product3: product(id: \"Shirt 1\") { id, title, price, inventory_count }, Product4: product(id: 2) { id, title, price, inventory_count }, Product5: product(title: \"Shirt 1\") { id, title, price, inventory_count } }"}}
+  [1m[36mProduct Load (0.3ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE (title = 'Shirt 1') ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:19
+  [1m[36mCACHE Product Load (0.0ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE (title = 'Shirt 1') ORDER BY "products"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:19
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."id" = ? LIMIT ?[0m  [["id", 0], ["LIMIT", 1]]
+  ↳ app/graphql/types/query_type.rb:17
+Completed 404 Not Found in 17ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Product with 'id'=Shirt 1):
+  
+app/graphql/types/query_type.rb:17:in `block (3 levels) in <main>'
+app/controllers/application_controller.rb:3:in `query'
