@@ -1,3 +1,3 @@
 class Cart < ApplicationRecord
-  has_many :products
+  serialize :productsid, Array
 end
