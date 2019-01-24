@@ -1,24 +1,33 @@
-# README
+# Basic Cart API
+A simple Ruby on Rails and GraphQL API to manage shopping cart and products. The database used is sqlite3 for local testing.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
+- Cart lookup by User ID
+- Product lookup by ID
+- Fetch all products according to category with customizable filter to only show available products.
+- Cart can be completed only when inventory_count of all products is at least 1.
+- GraphiQL Test GUI.
 
-Things you may want to cover:
+## How To Setup
+Make sure you have Ruby and Rails installed. Instructions for various platforms can be found on [https://gorails.com/setup](https://gorails.com/setup).
 
-* Ruby version
+In the command line, go to the root directory of the project and run
+```sh
+bundle install
+```
 
-* System dependencies
+Then, set up the database with
+```sh
+rake db:migrate
+```
 
-* Configuration
+Launch the server locally using
+```sh
+rails server -p 3000
+```
 
-* Database creation
+The server is now accessible via `localhost:3000`. All endpoint handling all queries are routed to `localhost:3000/query`. The GraphiQL GUI to test queries are available at `localhost:3000/graphiql`.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Documentation
+### Product Queries
+#### 
