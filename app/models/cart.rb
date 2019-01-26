@@ -1,4 +1,4 @@
 class Cart < ApplicationRecord
-  serialize :productsid, Array
-  has_many :products, :through => :cartitems
+  belongs_to :user
+  has_many :cart_items
 end
