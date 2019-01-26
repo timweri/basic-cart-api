@@ -2,11 +2,16 @@ Types::CartType = GraphQL::ObjectType.define do
   name "Cart"
     description "A Cart"
     field :id, !types.ID
-    field :productsid, types[types.ID]
-    field :products do
-      type types[Types::ProductType]
+    field :user do
+      type Types::UserType
       resolve -> (cart, args, ctx) {
-        Product.find(cart.productsid)
+        cart.user
+      }
+    end
+    field :cart_items do
+      type types[Types::CartItemType]
+      resolve -> (cart, args, ctx) {
+        cart.cart_items
       }
     end
 end
