@@ -20,18 +20,18 @@ shirtempty:
 
 pants1:
   name: Pants 1
-  product_category: Pants
+  product_category: pants
   price: 9
   inventory_count: 5
 
 pants2:
   name: Pants 2
-  product_category: Pants
+  product_category: pants
   price: 18
   inventory_count: 10
 
 shoes1:
   name: Shoes 1
-  product_category: Shoes
+  product_category: shoes
   price: 9
-  inventory_count: 50  
+  inventory_count: 50

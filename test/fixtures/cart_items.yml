@@ -32,5 +32,5 @@ cart3item1:
 
 cart3item2:
   cart: cart3
-  product: shirt3
+  product: shirt2
   quantity: 999999

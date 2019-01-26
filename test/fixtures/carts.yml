@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 cart1:
+  user: timweri
 
 cart2:
+  user: forumnaik
 
 cart3:
+  user: bob
