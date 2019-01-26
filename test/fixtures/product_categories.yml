@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+shirts:
+  name: Shirts
+
+pants:
+  name: Pants
+
+jackets:
+  name: Jackets
+
+shorts:
+  name: Shorts
+
+shoes:
+  name: Shoes
+
+hats:
+  name: Hats

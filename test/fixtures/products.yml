@@ -1,11 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  price: 9.99
+shirt1:
+  name: Shirt 1
+  product_category: shirts
+  price: 10
+  inventory_count: 20
+
+shirt2:
+  name: Shirt 2
+  product_category: shirts
+  price: 20
   inventory_count: 1
 
-two:
-  title: MyString
-  price: 9.99
-  inventory_count: 1
+shirtempty:
+  name: Shirt Empty
+  product_category: shirts
+  price: 99
+  inventory_count: 0
+
+pants1:
+  name: Pants 1
+  product_category: Pants
+  price: 9
+  inventory_count: 5
+
+pants2:
+  name: Pants 2
+  product_category: Pants
+  price: 18
+  inventory_count: 10
+
+shoes1:
+  name: Shoes 1
+  product_category: Shoes
+  price: 9
+  inventory_count: 50  

@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cart1item1:
+  cart: cart1
+  product: shirt1
+  quantity: 1
+
+cart1item2:
+  cart: cart1
+  product: shoes1
+  quantity: 10
+
+cart1item3:
+  cart: cart1
+  product: pants1
+  quantity: 1
+
+cart2item1:
+  cart: cart2
+  product: shirt1
+  quantity: 0
+
+cart2item2:
+  cart: cart2
+  product: shirt2
+  quantity: 2
+
+cart3item1:
+  cart: cart3
+  product: shirt1
+  quantity: 1
+
+cart3item2:
+  cart: cart3
+  product: shirt3
+  quantity: 999999
