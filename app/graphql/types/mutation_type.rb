@@ -2,5 +2,8 @@ Types::MutationType = GraphQL::ObjectType.define do
   name 'Mutation'
   description "The mutation root for this schema"
 
-  field :purchaseProducts, function: Resolvers::PurchaseProducts.new
+  field :add_to_cart, function: Resolvers::AddToCart.new
+  field :remove_from_cart, function: Resolvers::RemoveFromCart.new
+  field :edit_cart_item_quantity, function: Resolvers::EditCartItemQuantity.new
+  field :empty_cart, function: Resolvers::EmptyCart.new
 end
