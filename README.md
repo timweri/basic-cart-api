@@ -41,13 +41,18 @@ Here are a list of all the subresources of the API. Click on a link to read the 
 #### Shopping Cart
 - [Check the content of cart](#check-the-content-of-cart)
 - [Edit Cart](#edit-cart)
+- [Complete Cart](#complete-cart)
 
 ## Product
 ### Fetch Products
 #### Queries
-- [allProducts](#allproducts)
+- [all_products](#all_products)
 - [product](#product-connection)
-#### allProducts
+#### all_products
+`all_products(only_show_available: Boolean = false): Product`<br>
+> Fetch all products from the catalog.
+
+
 
 #### <a name="product-connection"/> product
 
