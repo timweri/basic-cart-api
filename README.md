@@ -62,7 +62,7 @@ Here are a list of all the subresources of the API. Click on a link to read the 
 - [user_by_username](#user-by-username)
 
 ### all_products
-```
+```graphql
 all_products(only_show_available: Boolean = false): [Product]
 ```
 Fetch all products from the catalog. 
@@ -75,7 +75,7 @@ Refers to [ProductType](#product-type) for the return type.
 Only show products that have positive inventory count.
 
 ### <a name="product-connection"/> product
-```
+```graphql
 product(id: ID!): Product
 ```
 Fetch the product with the given ID.
@@ -88,7 +88,7 @@ Refers to [ProductType](#product-type) for the return type.
 The ID of the required product.
 
 ### user_by_id
-```
+```graphql
 user_by_id(id: ID!): User
 ```
 Fetch the user with the given ID.
@@ -101,7 +101,7 @@ Refers to [UserType](#user-type) for the return value.
 The ID of the required user.
 
 ### user_by_username
-```
+```graphql
 user_by_username(username: String!): User
 ```
 Fetch the user with the given username.
@@ -130,12 +130,12 @@ add_to_cart(
 ```
 
 ### complete_cart
-```
+```graphql
 complete_cart(user_id: ID!): Cart!
 ```
 
 ### edit_cart_item_quantity
-```
+```graphql
 edit_cart_item_quantity(
     product_id: ID!
     user_id: ID!
@@ -144,12 +144,12 @@ edit_cart_item_quantity(
 ```
 
 ### empty_cart
-```
+```graphql
 empty_cart(user_id: ID!): Cart!
 ```
 
 ### remove_from_cart
-```
+```graphql
 remove_from_cart(
     product_id: ID!
     user_id: ID!
