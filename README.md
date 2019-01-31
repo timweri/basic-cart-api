@@ -34,11 +34,11 @@ The server is now accessible via `localhost:3000`. All endpoint handling all que
 
 # Documentation [Incomplete]
 Here are a list of all the subresources of the API. Click on a link to read the API documentation for accessing each resource:
-#### Product
+### Product
 - [Fetch products](#fetch-products)
 - [Add a product to cart](#add-a-product-to-cart)
 
-#### Shopping Cart
+### Shopping Cart
 - [Check the content of cart](#check-the-content-of-cart)
 - [Edit Cart](#edit-cart)
 - [Complete Cart](#complete-cart)
@@ -46,35 +46,190 @@ Here are a list of all the subresources of the API. Click on a link to read the 
 ## Product
 ### Fetch Products
 #### Queries
-- [all_products](#all_products)
-- [product](#product-connection)
-#### all_products
-`all_products(only_show_available: Boolean = false): Product`<br>
-> Fetch all products from the catalog.
-
-
-
-#### <a name="product-connection"/> product
+- Fetch multiple products: [all_products](#all_products)
+- Fetch individual product: [product](#product-connection)
 
 ### Add A Product To Cart
 #### Mutations
-- [addProduct](#addproduct)
-
-#### addProduct
 
 ## Shopping Cart
 ### Check The Content Of Cart
-#### Queries
-- [checkCart](#checkcart)
 
-#### checkCart
+## Query
+- [all_products](#all_products)
+- [product](#product-connection)
+- [user_by_id](#user-by-id)
+- [user_by_username](#user-by-username)
 
-### Edit Cart
-#### Mutations
-- [emptyCart](#emptyCart)
-- [removeFromCart](#removefromcart)
-- [editQuantity](#editquantity)
+### all_products
+```
+all_products(only_show_available: Boolean = false): [Product]
+```
+Fetch all products from the catalog. 
 
-#### emptyCart
-#### removeFromCart
-#### editQuantity
+#### Return Value
+Refers to [ProductType](#product-type) for the return type.
+
+#### Parameters
+`only_show_available: Boolean = false`<br>
+Only show products that have positive inventory count.
+
+### <a name="product-connection"/> product
+```
+product(id: ID!): Product
+```
+Fetch the product with the given ID.
+
+#### Return Value
+Refers to [ProductType](#product-type) for the return type.
+
+#### Parameters
+`id: ID!`<br>
+The ID of the required product.
+
+### user_by_id
+```
+user_by_id(id: ID!): User
+```
+Fetch the user with the given ID.
+
+#### Return value
+Refers to [UserType](#user-type) for the return value.
+
+#### Parameters
+`id: ID!`<br>
+The ID of the required user.
+
+### user_by_username
+```
+user_by_username(username: String!): User
+```
+Fetch the user with the given username.
+
+#### Return value
+Refers to [UserType](#user-type) for the return value.
+
+#### Parameters
+`username: String!`<br>
+The username of the required user.
+
+## Mutation
+- [add_to_cart](#add-to-cart)
+- [complete_cart](#complete-cart)
+- [edit_cart_item_quantity](#edit-cart-item-quantity)
+- [empty_cart](#empty-cart)
+- [remove_from_cart](#remove_from_cart)
+
+### add_to_cart
+```graphql
+add_to_cart(
+    product_id: ID!
+    user_id: ID!
+    quantity: Int!
+): Cart!
+```
+
+### complete_cart
+```
+complete_cart(user_id: ID!): Cart!
+```
+
+### edit_cart_item_quantity
+```
+edit_cart_item_quantity(
+    product_id: ID!
+    user_id: ID!
+    quantity: Int!
+): Cart!
+```
+
+### empty_cart
+```
+empty_cart(user_id: ID!): Cart!
+```
+
+### remove_from_cart
+```
+remove_from_cart(
+    product_id: ID!
+    user_id: ID!
+): Cart!
+```
+
+## Types
+- [Product Type](#product-type)
+- [Product Category Type](#product-category-type)
+- [Cart Type](#cart-type)
+- [Cart Item Type](#cart-item-type)
+- [User Type](#user-type)
+
+### Product Type
+Represents a product.
+#### Fields
+`id: ID!`<br>
+The unique ID of the product.
+
+`inventory_count: Int!`<br>
+The inventory count of the product.
+
+`name: String!`<br>
+The name of the product.
+
+`price: Float!`<br>
+The price of the product.
+
+`product_category: ProductCategory`<br>
+The category of the product. Refer to [ProductCategoryType](#product-category-type).
+
+### Product Category Type
+Represents a product category. Each object of [ProductType](#product-type) can only have one [ProductCategoryType](#product-category-type).
+
+#### Fields
+`id: ID!`<br>
+The unique ID of the product category.
+
+`name: String!`<br>
+The name of the product category.
+
+`products: [Product]`<br>
+The list of all products of this category. Refer to [ProductType](#product-type) for the return type.
+
+### Cart Type
+Represents a shopping cart. Each object of [UserType](#user-type) can only have one [CartType](#cart-type). Each object of [CartType](#cart-type) can have multiple [CartItemType](#cart-item-type) objects.
+
+#### Fields
+`id: ID!`<br>
+The unique ID of the cart.
+
+`cart_items: [CartItem]`<br>
+The list of all items in the cart. Refer to [CartItemType](#cart-item-type) for the return type.
+
+`user: User`<br>
+The user that owns this cart. Refer to [UserType](#user-type) for the return type.
+
+### Cart Item Type
+Represents an item in the cart. An object of [CartItemType](#cart-item-type) can only belong to one object of [CartType](#cart-type).  Each object of [CartType](#cart-type) can have multiple [CartItemType](#cart-item-type) objects.
+
+#### Fields
+`id: ID!`<br>
+The unique ID of the cart item.
+
+`product: Product`<br>
+The product this cart item is referring to. Refer to [ProductType](#product-type) for the return type.
+
+`quantity: Int!`<br>
+The amount of `CartItem.product` in the cart. This eliminates the case where there are multiple [CartItemType](#cart-item-type) objects for the same [ProductType](#product-type) object.
+
+### User Type
+Represents a user in the shop. A [UserType](#user-type) object can only own one [CartType](#cart-type).
+
+#### Fields
+`id: ID!`<br>
+The unique ID of the user.
+
+`cart: Cart`<br>
+The cart that belongs to the user. Refer to [CartType](#cart-type) for the return type.
+
+`username: String!`<br>
+The username of the user.
+
