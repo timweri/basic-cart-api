@@ -25,6 +25,11 @@ rake db:migrate
 rake test
 ```
 
+To load the fixtures, run
+```sh
+rake db:fixtures:load RAILS_ENV=development
+```
+
 Launch the server locally using
 ```sh
 rails server -p 3000
