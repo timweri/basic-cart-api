@@ -125,14 +125,41 @@ The username of the required user.
 add_to_cart(
     product_id: ID!
     user_id: ID!
-    quantity: Int!
+    quantity: Int! = 1
 ): Cart!
 ```
+Add a product to a specified user's cart with a customizable quantity.
+
+#### Return Value
+Returns the updated cart with the new product. Refers to [CartType](#cart-type) for the return type.
+
+#### Parameters
+`product_id: ID!`<br>
+The unique ID of the product to be added to the cart.
+
+`user_id: ID!`<br>
+The unique ID of the user whose cart we are modifying.
+
+`quantity: Int! = 1`<br>
+The quantity of the product to be added. Default value is `1`. The value has to be at least `1`. 
 
 ### complete_cart
 ```graphql
 complete_cart(user_id: ID!): Cart!
 ```
+Complete the shopping cart (place the order for the items in the cart). A cart can only be completed if for each cart item, the quantity is at most the inventory count of the product. The cart is emptied once the cart is completed.
+
+#### Return Value
+If the completion is successful, returns the updated cart with the new product. Refers to [CartType](#cart-type) for the return type.
+
+If there is not enough stock for any product, returns a list of messages with the following format:
+```
+#{name} (Product ID: #{id}) does not have enough stock.
+```
+
+#### Parameters
+`user_id: ID!`<br>
+The unique id of the user who owns the cart to be completed.
 
 ### edit_cart_item_quantity
 ```graphql
@@ -142,11 +169,33 @@ edit_cart_item_quantity(
     quantity: Int!
 ): Cart!
 ```
+Edit the quantity of a cart item in a user's cart. If the new quantity is `0` or less, the cart item is removed from the cart.
+
+#### Return Value
+Returns the updated cart with the edited cart item. Refers to [CartType](#cart-type) for the return type.
+
+#### Parameters
+`product_id: ID!`<br>
+The unique ID of the product to be edited. Used to identify the cart item in the cart.
+
+`user_id: ID!`<br>
+The unique ID of the user who owns the cart. Used to identify which cart to edit.
+
+`quantity: Int!`<br>
+The new quantity to be assigned to the cart item. If `quantity <= 0`, the cart item is removed.
 
 ### empty_cart
 ```graphql
 empty_cart(user_id: ID!): Cart!
 ```
+Empty the cart by removing all the cart items in the cart.
+
+#### Return Value
+Returns the emptied cart. Refers to [CartType](#cart-type) for the return type.
+
+#### Parameters
+`user_id: ID!`<br>
+The unique ID of the user whose cart is to be emptied.
 
 ### remove_from_cart
 ```graphql
@@ -155,6 +204,10 @@ remove_from_cart(
     user_id: ID!
 ): Cart!
 ```
+Remove from cart the specified product/cart item. Does nothing if the product is not found in the cart.
+
+#### Return Value
+Returns the cart after removing the specified product/cart item. Refers to [CartType](#cart-type) for the return type.
 
 ## Types
 - [Product Type](#product-type)
