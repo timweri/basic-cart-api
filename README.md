@@ -32,7 +32,7 @@ rails server -p 3000
 
 The server is now accessible via `localhost:3000`. All endpoint handling all queries are routed to `localhost:3000/query`. The GraphiQL GUI to test queries are available at `localhost:3000/graphiql`.
 
-# Documentation [Incomplete]
+# Documentation
 Here are a list of all the subresources of the API. Click on a link to read the API documentation for accessing each resource:
 ### Product
 - [Fetch products](#fetch-products)
