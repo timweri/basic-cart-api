@@ -39,21 +39,58 @@ Here are a list of all the subresources of the API. Click on a link to read the 
 - [Add a product to cart](#add-a-product-to-cart)
 
 ### Shopping Cart
-- [Check the content of cart](#check-the-content-of-cart)
+- [Check the content of cart](#check-content-of-cart)
 - [Edit Cart](#edit-cart)
 - [Complete Cart](#complete-cart)
 
+### Query
+- [all_products](#all_products)
+- [product](#product-connection)
+- [user_by_id](#user-by-id)
+- [user_by_username](#user-by-username)
+
+### Mutation
+- [add_to_cart](#add_to_cart)
+- [complete_cart](#complete_cart)
+- [edit_cart_item_quantity](#edit_cart_item_quantity)
+- [empty_cart](#empty_cart)
+- [remove_from_cart](#remove_from_cart)
+
 ## Product
 ### Fetch Products
-#### Queries
 - Fetch multiple products: [all_products](#all_products)
 - Fetch individual product: [product](#product-connection)
 
 ### Add A Product To Cart
-#### Mutations
+Use [add_to_cart](#add_to_cart).
 
 ## Shopping Cart
-### Check The Content Of Cart
+### Check Content Of Cart
+Use [user_by_id](#user-by-id) or [user_by_username](#user-by-username):
+```graphql
+query {
+    user_by_id(id: XXXXXXXXX) {
+        cart {
+            ...
+        }
+    }
+    // OR
+    user_by_username(username: XXXXXXXXX) {
+        cart {
+            ...
+        }
+    }
+}
+```
+
+### Edit Cart
+- Add a product to cart: [add_to_cart](#add_to_cart)
+- Remove a product from cart: [remove_from_cart](#remove_from_cart)
+- Empty cart: [empty_cart](#empty_cart)
+- Edit the quantity of a cart item: [edit_cart_item_quantity](#edit_cart_item_quantity)
+
+### Complete Cart
+Use [complete_cart](#complete_cart).
 
 ## Query
 - [all_products](#all_products)
@@ -114,10 +151,10 @@ Refers to [UserType](#user-type) for the return value.
 The username of the required user.
 
 ## Mutation
-- [add_to_cart](#add-to-cart)
-- [complete_cart](#complete-cart)
-- [edit_cart_item_quantity](#edit-cart-item-quantity)
-- [empty_cart](#empty-cart)
+- [add_to_cart](#add_to_cart)
+- [complete_cart](#complete_cart)
+- [edit_cart_item_quantity](#edit_cart_item_quantity)
+- [empty_cart](#empty_cart)
 - [remove_from_cart](#remove_from_cart)
 
 ### add_to_cart
